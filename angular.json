@@ -25,7 +25,8 @@
     "@nrwl/angular:library": {
       "style": "scss",
       "linter": "eslint",
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "strict": true
     },
     "@nrwl/angular:component": {
       "style": "scss"
@@ -48,10 +49,33 @@
             "tsConfig": "apps/mychurch-admin/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "apps/mychurch-admin/src/favicon.ico",
-              "apps/mychurch-admin/src/assets"
+              {
+                "glob": "favicon.ico",
+                "input": "libs/shells/mychurch-admin/src",
+                "output": "./"
+              },
+              {
+                "glob": "**/*",
+                "input": "libs/shells/mychurch-admin/src/assets",
+                "output": "assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/@taiga-ui/icons/src",
+                "output": "assets/taiga-ui/icons"
+              },
+              {
+                "input": "configs",
+                "glob": "app-config.json",
+                "output": "app-config"
+              }
             ],
-            "styles": ["apps/mychurch-admin/src/styles.scss"],
+            "styles": [
+              "apps/mychurch-admin/src/styles.scss",
+              "node_modules/@taiga-ui/core/styles/taiga-ui-global.less",
+              "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
+              "libs/shells/mychurch-admin/src/mychurch-admin.styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -70,8 +94,8 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "apps/mychurch-admin/src/environments/environment.ts",
-                  "with": "apps/mychurch-admin/src/environments/environment.prod.ts"
+                  "replace": "libs/shells/mychurch-admin/src/environments/mychurch-admin-environment.ts",
+                  "with": "libs/shells/mychurch-admin/src/environments/mychurch-admin-environment.prod.ts"
                 }
               ],
               "outputHashing": "all"
@@ -146,6 +170,52 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/mychurch-admin-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "shells-mychurch-admin": {
+      "projectType": "library",
+      "root": "libs/shells/mychurch-admin",
+      "sourceRoot": "libs/shells/mychurch-admin/src",
+      "prefix": "tiq-soft",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shells/mychurch-admin"],
+          "options": {
+            "jestConfig": "libs/shells/mychurch-admin/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shells/mychurch-admin/src/**/*.ts",
+              "libs/shells/mychurch-admin/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "models": {
+      "root": "libs/models",
+      "sourceRoot": "libs/models/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/models/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/models"],
+          "options": {
+            "jestConfig": "libs/models/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

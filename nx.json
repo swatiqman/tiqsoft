@@ -25,6 +25,12 @@
     "mychurch-admin-e2e": {
       "tags": [],
       "implicitDependencies": ["mychurch-admin"]
+    },
+    "shells-mychurch-admin": {
+      "tags": []
+    },
+    "models": {
+      "tags": []
     }
   }
 }
