@@ -15,10 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@tiq-soft/models": ["libs/models/src/index.ts"],
       "@tiq-soft/shells/mychurch-admin": [
         "libs/shells/mychurch-admin/src/index.ts"
-      ],
-      "@tiq-soft/models": ["libs/models/src/index.ts"]
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -19,6 +19,9 @@
     }
   },
   "projects": {
+    "models": {
+      "tags": []
+    },
     "mychurch-admin": {
       "tags": []
     },
@@ -28,9 +31,14 @@
     },
     "shells-mychurch-admin": {
       "tags": []
-    },
-    "models": {
-      "tags": []
     }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
   }
 }

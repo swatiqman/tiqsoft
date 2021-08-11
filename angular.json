@@ -33,6 +33,27 @@
     }
   },
   "projects": {
+    "models": {
+      "root": "libs/models",
+      "sourceRoot": "libs/models/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/models/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/models"],
+          "options": {
+            "jestConfig": "libs/models/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "mychurch-admin": {
       "projectType": "application",
       "root": "apps/mychurch-admin",
@@ -195,27 +216,6 @@
               "libs/shells/mychurch-admin/src/**/*.ts",
               "libs/shells/mychurch-admin/src/**/*.html"
             ]
-          }
-        }
-      }
-    },
-    "models": {
-      "root": "libs/models",
-      "sourceRoot": "libs/models/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/models/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/models"],
-          "options": {
-            "jestConfig": "libs/models/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
